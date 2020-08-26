@@ -14,8 +14,14 @@ class OperationsDB
         $operations = $this->connexion->getRepository('Operations')->findAll();
         return $operations;
     }
+    //Permet de recupérer le compte selon son numéro compte
+    public function getIdCompte($numCompte)
+    {
+        $operations = $this->connexion->getRepository('Comptes')->findBy(['numero_compte'=>$numCompte]);
+        return $operations;
+    }
     //Permet de recupérer toutes les opérations sur un compte donné via son id
-    public function getByIdCompte($idCompte)
+    public function getAllByCompte($idCompte)
     {
         $operations = $this->connexion->getRepository('Operations')->findBy(['id_compte_source'=>$idCompte]);
         return $operations;

@@ -25,7 +25,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
     $resultats = $operations->getAll();
  
      // On vérifie si on a au moins 1 produit
-     if(count($resultats) > 0){
+     if(count($resultats) > 0)
+    {
         // On initialise un tableau associatif
         $data = [];
         $data['operation'] = [];
@@ -34,8 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
         //while($row = $resultats->fetch(PDO::FETCH_ASSOC)){
         foreach ($resultats as $resultat)
         {
-            //extract($row);
-           
+            //on test si c'est virement (compte destinataire non nul)
             if($resultat->getIdCompteDestinataire()){
                 $operation = [
                     "id" => $resultat->getId(),
@@ -48,6 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
 
                 $data['operation'][] = $operation;
             }
+            //si c'est pas virement compte destinataire est vide
             else
             {
                 $operation = [
@@ -69,8 +70,15 @@ if($_SERVER['REQUEST_METHOD'] == 'GET')
         // On encode en json et on envoie
         echo json_encode($data);
     }
+    else
+        {
+            $data['Warning'] = "Désolé! aucune opération disponible";
+            // On encode en json et on envoie
+            echo json_encode($data);
+        }
 
 }
+//Si la méthode n'est pas GET
 else
 {
     // On gère l'erreur

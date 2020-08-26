@@ -26,17 +26,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
         // On récupère les données
         $resultats = $comptes->getSolde($_POST["numCompte"]);
     
-        // On vérifie si on a au moins 1 produit
+        // On vérifie si le compte existe ($resultats n'est pas vide)
         if(count($resultats) > 0){
             // On initialise un tableau associatif
             $data = [];
             $data['message'] = "Voici le solde du compte";
             $data['compte'] = [];
             
-
-
-            // On parcourt les compte
-            //while($row = $resultats->fetch(PDO::FETCH_ASSOC)){
+            // On parcourt les comptes
             foreach ($resultats as $resultat)
             {
                 $compte = [
@@ -54,9 +51,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
             // On encode en json et on envoie
             echo json_encode($data);
         }
+        else
+        {
+            //si le compte n'existe pas
+            $data['erreur'] = "Désolé! ce compte n'existe pas";
+            // On encode en json et on envoie
+            echo json_encode($data);
+        }
+    }
+    //Si aucune donnée reçu
+    else
+    {
+        $data['Message'] = "Aucun numéro compte reçu";
+        $data['Infos'] = "utilise numCompte comme key et le numéro du compte comme value";
+        // On encode en json et on envoie
+        echo json_encode($data);
     }
 
 }
+//Si la méthode utilisée n'est pas POST
 else
 {
     // On gère l'erreur
