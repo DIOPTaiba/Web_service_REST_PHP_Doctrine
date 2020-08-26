@@ -1,4 +1,4 @@
 RewriteEngine On
-RewriteRule operationsCompte src/Services/operations/getAllByCompte.ph
+RewriteRule operationsCompte src/Services/operations/getAllByCompte.php
 RewriteRule operationsAll src/Services/operations/getAll.php
 RewriteRule getSolde src/Services/compte/getSolde.php
