@@ -9,7 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     if ( !empty($_POST["idCompte"]) )
     {
-        // On instancie les operations
+        // On instancie le model operationDB
         $operations = new OperationsDB();
 
         // On récupère les données
