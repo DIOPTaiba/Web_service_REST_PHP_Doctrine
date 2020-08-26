@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST')
 
     if ( !empty($_POST["numCompte"]) )
     {
-        // On instancie les operations
+        // On instancie le model CompteDB
         $comptes = new CompteDB();
 
         // On récupère les données
