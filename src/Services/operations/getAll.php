@@ -18,7 +18,7 @@ require_once "../../Model/OperationsDB.php";
 if($_SERVER['REQUEST_METHOD'] == 'GET')
 {
 
-    // On instancie les operations
+    // On instancie le model OperationDB
     $operations = new OperationsDB();
 
     // On récupère les données

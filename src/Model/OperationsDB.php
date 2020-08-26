@@ -8,6 +8,7 @@ class OperationsDB
         require_once "../../../bootstrap.php";
         $this->connexion = $entityManager;
     }
+    //Permet de recupérer toutes les opérations
     public function getAll()
     {
         $operations = $this->connexion->getRepository('Operations')->findAll();
